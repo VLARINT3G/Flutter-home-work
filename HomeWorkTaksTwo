@@ -1,0 +1,21 @@
+void main() {
+  final input = [1, 1, 2, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5];
+  final output = removeDuplicatedFromSortedList(input);
+
+  print(output); // [1, 2, 3, 4]
+}
+
+List<int> removeDuplicatedFromSortedList(List<int> array) {
+  final result = <int>[]; // новый список без повторов
+
+  for (int i = 0; i < array.length - 1; i++) {
+    if (array[i] != array[i + 1]) {
+      result.add(array[i]);
+    }
+  }
+
+  // Не забудь последний элемент — он не сравнивается
+  result.add(array.last);
+
+  return result;
+}
