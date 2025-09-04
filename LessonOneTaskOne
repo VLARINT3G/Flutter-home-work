@@ -1,0 +1,38 @@
+(int, int) findTwoElementsGivesSum(List<int> array, int sum) {
+  for (int i = 0; i < array.length - 1; i++) {
+    final el = array[i];
+
+    for (int j = i + 1; j < array.length; j++) {
+      if (el + array[j] == sum) {
+        return (i, j);
+      }
+    }
+  }
+
+  return (-1, -1); // если пара не найдена
+}
+
+
+(int, int) findTwoElementsGivesSum(List<int> array, int sum) {
+  final map = <int, int>{}; // Map: значение -> индекс
+
+  for (int i = 0; i < array.length - 1; i++) {
+    if (map.containsKey(sum - array[i])) {
+      final firstElementIndex = map[sum - array[i]];
+      final secondElementIndex = i;
+      return (firstElementIndex, secondElementIndex);
+    }
+
+    map[array[i]] = i;
+  }
+
+  return (-1, -1); // если пара не найдена
+}
+
+void main() {
+  final array = [3, 5, 2, 8, 7];
+  final sum = 10;
+
+  final result = findTwoElementsGivesSum(array, sum);
+  print('Результат: $result');
+}
