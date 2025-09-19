@@ -1,0 +1,34 @@
+class ComplexNumber {
+  double real;
+  double im;
+  ComplexNumber(this.real, this.im);
+  void showComplexNumber() {
+    print('You wrote $real + $im*i');
+  }
+
+  ComplexNumber operator +(ComplexNumber other) {
+    double newReal = this.real + other.real;
+    double newIm = this.im + other.im;
+    return (ComplexNumber(newReal, newIm));
+  }
+
+  ComplexNumber operator *(ComplexNumber other) {
+    double a = this.real;
+    double b = this.im;
+    double c = other.real;
+    double d = other.im;
+
+    double newReal = (a * c - b * d);
+    double newIm = (a * d + b * c);
+    return (ComplexNumber(newReal, newIm));
+  }
+}
+
+void main() {
+  ComplexNumber z1 = ComplexNumber(3, 4);
+  ComplexNumber z2 = ComplexNumber(3, 4);
+  ComplexNumber z3 = z1 + z2;
+  ComplexNumber z4 = z1 * z2;
+  z3.showComplexNumber();
+  z4.showComplexNumber();
+}
