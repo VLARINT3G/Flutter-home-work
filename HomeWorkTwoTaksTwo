@@ -1,0 +1,24 @@
+class UserModel {
+  int? choiceOne;
+  String? choiceTwo;
+  bool? choiceThree;
+  double? choiceFour;
+
+  UserModel(this.choiceOne, this.choiceTwo, this.choiceThree, this.choiceFour);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'choiceOne': choiceOne,
+      'choiceTwo': choiceTwo,
+      'choiceThree': choiceThree,
+      'choiceFour': choiceFour,
+    };
+  }
+
+  void revealJson() => print(toJson());
+}
+
+void main() {
+  var user = UserModel(1, "Alex", true, 3.14);
+  user.revealJson();
+}
