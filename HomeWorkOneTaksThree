@@ -1,0 +1,56 @@
+abstract class NamedModel {
+  String name;
+  NamedModel(this.name);
+}
+
+class SmartStorage<T extends NamedModel> {
+  List<T> items = [];
+
+  void addItems(T item) {
+    items.add(item);
+  }
+
+  void showItems() {
+    for (var item in items) {
+      print(item.name); 
+    }
+  }
+
+  void dellItemByName(String nameToDelete) {
+    items.removeWhere((item) => item.name == nameToDelete);
+  }
+
+  void dellItemsByNames(List<String> namesToDelete) {
+    items.removeWhere((item) => namesToDelete.contains(item.name));
+  }
+}
+
+// ===== Пример простой модели
+class MyModel extends NamedModel {
+  MyModel(String name) : super(name);
+}
+
+void main() {
+  var storage = SmartStorage<MyModel>();
+
+  // Добавим элементы
+  storage.addItems(MyModel("apple"));
+  storage.addItems(MyModel("banana"));
+  storage.addItems(MyModel("orange"));
+  storage.addItems(MyModel("banana"));
+
+  print("Все элементы:");
+  storage.showItems();
+
+  // Удалим один
+  storage.dellItemByName("orange");
+
+  print("\nПосле удаления 'orange':");
+  storage.showItems();
+
+  // Удалим сразу несколько
+  storage.dellItemsByNames(["banana", "apple"]);
+
+  print("\nПосле удаления ['banana', 'apple']:");
+  storage.showItems();
+}
